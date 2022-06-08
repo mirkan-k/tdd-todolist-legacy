@@ -11,8 +11,19 @@ class TodoList {
     return item
   }
 
-  showAll () {
+  cleanUpText () {
+    for (let i = 0; i < this.items.length; i++) {
+      let itemText = this.items[i].text;
+      if (itemText.length > 20) {
+        const newText = itemText.substring(0, 20) + "..."
+        this.items[i].text = newText 
+      }
+    }
     return this.items
+  }
+
+  showAll () {
+    return this.cleanUpText()
   }
 
   setComplete (id) {
@@ -37,7 +48,9 @@ class TodoList {
     return this.items.splice(index, 1)[0]
   }
 }
-// this is me, Mirkan
-// Hi this is Michele
-// it worked!
+const toDoList = new TodoList()
+console.log(toDoList.create("Please turn the heating on only after 8pm!"))
+console.log(toDoList.create('test'))
+console.log(toDoList.showAll())
+
 module.exports = TodoList

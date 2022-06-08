@@ -141,4 +141,26 @@ describe("TodoList", () => {
     // execute, verify
     expect(() => todoList.deleteBy(1)).toThrowError("Item not found")
   })
+
+  it("Show only the first 20chars when displaying all items and replace the rest with '...' ", () => {
+    // set up
+    const item1 = {
+      id: 1,
+      text: "Please turn the heat...",
+      status: "incomplete"
+    }
+    const item2 = {
+      id: 2,
+      text: "Do the washing up",
+      status: "incomplete"
+    }
+    const expected = [item1, item2]
+
+    // execute
+    todoList.create("Please turn the heating on only after 8pm!")
+    todoList.create("Do the washing up")
+
+    // verify
+    expect(todoList.showAll()).toEqual(expected)
+  })
 })
