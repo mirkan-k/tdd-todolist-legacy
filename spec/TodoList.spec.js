@@ -163,4 +163,19 @@ describe("TodoList", () => {
     // verify
     expect(todoList.showAll()).toEqual(expected)
   })
+
+  it("When displaying single items, show the whole item text", () => {
+    // set up
+    const expected = [{
+      id: 1,
+      text: "Please turn the heating on only after 8pm!",
+      status: "incomplete"
+    }]
+
+    // execute
+    todoList.create("Please turn the heating on only after 8pm!")
+
+    // verify
+    expect(todoList.showAll()).toEqual(expected)
+  })
 })
